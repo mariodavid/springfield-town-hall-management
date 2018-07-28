@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.cuba.cedg.web.employee.example1.EmployeeAssignWorkgroup"
+        datasource="employeeDs"
+        focusComponent="townHallsTable"
+        messagesPack="de.diedavids.cuba.cedg.web.employee.example1">
+    <dsContext>
+        <datasource id="employeeDs"
+                    class="de.diedavids.cuba.cedg.entity.Employee"
+                    view="employee-assign-workgroup-view">
+            <collectionDatasource id="townHallsDs"
+                                  property="townHalls"/>
+            <collectionDatasource id="workgroupsDs"
+                                  property="workgroups"/>
+        </datasource>
+        <collectionDatasource id="allTownHallsDs"
+                              class="de.diedavids.cuba.cedg.entity.TownHall"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from cedg$TownHall e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="allWorkgroupsOfTownHallDs"
+                              class="de.diedavids.cuba.cedg.entity.Workgroup"
+                              view="workgroup-view">
+            <query>
+                <![CDATA[select e from cedg$Workgroup e where e.townHall.id = :ds$allTownHallsDs]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="contentBox"
+            spacing="true">
+        <vbox id="contentBox">
+        <groupBox id="townHallsBox"
+                  caption="msg://de.diedavids.cuba.cedg.entity/Employee.townHalls">
+            <table id="townHallsTable"
+                   height="200px"
+                   width="100%">
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <rows datasource="allTownHallsDs"/>
+            </table>
+        </groupBox>
+        <groupBox id="workgroupsBox"
+                  caption="msg://workgroupsForTownHall">
+            <table id="workgroupsTable"
+                   multiselect="true"
+                   height="200px"
+                   width="100%">
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <rows datasource="allWorkgroupsOfTownHallDs"/>
+            </table>
+        </groupBox>
+        </vbox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

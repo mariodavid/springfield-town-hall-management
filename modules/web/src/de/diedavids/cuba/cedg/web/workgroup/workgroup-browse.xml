@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="de.diedavids.cuba.cedg.web.workgroup.WorkgroupBrowse"
+        focusComponent="workgroupsTable"
+        lookupComponent="workgroupsTable"
+        messagesPack="de.diedavids.cuba.cedg.web.workgroup">
+    <dsContext>
+        <groupDatasource id="workgroupsDs"
+                         class="de.diedavids.cuba.cedg.entity.Workgroup"
+                         view="workgroup-view">
+            <query>
+                <![CDATA[select e from cedg$Workgroup e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="workgroupsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="workgroupsTable"
+                datasource="workgroupsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="workgroupsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="townHall"/>
+            </columns>
+            <rows datasource="workgroupsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="workgroupsTable.create"/>
+                <button id="editBtn"
+                        action="workgroupsTable.edit"/>
+                <button id="removeBtn"
+                        action="workgroupsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

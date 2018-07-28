@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.cuba.cedg.web.workgroup.WorkgroupEdit"
+        datasource="workgroupDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.cuba.cedg.web.workgroup">
+    <dsContext>
+        <datasource id="workgroupDs"
+                    class="de.diedavids.cuba.cedg.entity.Workgroup"
+                    view="workgroup-view">
+            <collectionDatasource id="employeesDs"
+                                  property="employees"/>
+        </datasource>
+        <collectionDatasource id="townHallsDs"
+                              class="de.diedavids.cuba.cedg.entity.TownHall"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from cedg$TownHall e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="workgroupDs">
+            <column width="250px">
+                <field property="name"/>
+                <field optionsDatasource="townHallsDs"
+                       property="townHall"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="employeesBox"
+                  caption="msg://de.diedavids.cuba.cedg.entity/Workgroup.employees">
+            <table id="employeesTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="add"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <rows datasource="employeesDs"/>
+                <buttonsPanel>
+                    <button action="employeesTable.add"/>
+                    <button action="employeesTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

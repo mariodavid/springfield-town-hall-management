@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.cuba.cedg.web.townhall.TownHallEdit"
+        datasource="townHallDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.cuba.cedg.web.townhall">
+    <dsContext>
+        <datasource id="townHallDs"
+                    class="de.diedavids.cuba.cedg.entity.TownHall"
+                    view="townHall-view">
+            <collectionDatasource id="employeesDs"
+                                  property="employees"/>
+            <collectionDatasource id="workgroupsDs"
+                                  property="workgroups"/>
+        </datasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="townHallDs">
+            <column width="250px">
+                <field property="name"/>
+            </column>
+        </fieldGroup>
+        <groupBox id="employeesBox"
+                  caption="msg://de.diedavids.cuba.cedg.entity/TownHall.employees">
+            <table id="employeesTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="add"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <rows datasource="employeesDs"/>
+                <buttonsPanel>
+                    <button action="employeesTable.add"/>
+                    <button action="employeesTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <groupBox id="workgroupsBox"
+                  caption="msg://de.diedavids.cuba.cedg.entity/TownHall.workgroups">
+            <table id="workgroupsTable"
+                   height="200px"
+                   width="100%">
+                <actions>
+                    <action id="create"/>
+                    <action id="edit"/>
+                    <action id="remove"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <rows datasource="workgroupsDs"/>
+                <buttonsPanel>
+                    <button action="workgroupsTable.create"/>
+                    <button action="workgroupsTable.edit"/>
+                    <button action="workgroupsTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

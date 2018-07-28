@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="de.diedavids.cuba.cedg.web.employee.EmployeeEdit"
+        datasource="employeeDs"
+        focusComponent="fieldGroup"
+        messagesPack="de.diedavids.cuba.cedg.web.employee">
+    <dsContext>
+        <datasource id="employeeDs"
+                    class="de.diedavids.cuba.cedg.entity.Employee"
+                    view="employee-edit-view">
+            <collectionDatasource id="townHallsDs"
+                                  property="townHalls"/>
+            <collectionDatasource id="workgroupsDs"
+                                  property="workgroups"/>
+        </datasource>
+        <collectionDatasource id="systemUsersDs"
+                              class="com.haulmont.cuba.security.entity.User"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from sec$User e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <tabSheet>
+            <tab spacing="true" margin="true" id="general"
+                 caption="msg://general">
+                <fieldGroup id="fieldGroup"
+                            datasource="employeeDs">
+                    <column width="250px">
+                        <field property="name"/>
+                        <field optionsDatasource="systemUsersDs"
+                               property="systemUser"/>
+                    </column>
+                </fieldGroup>
+            </tab>
+            <tab spacing="true" margin="true" id="townHalls"
+                 caption="msg://de.diedavids.cuba.cedg.entity/Employee.townHalls">
+                <table id="townHallsTable"
+                       height="200px"
+                       width="100%">
+                    <actions>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                    </columns>
+                    <rows datasource="townHallsDs"/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="removeBtn"
+                                action="townHallsTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </tab>
+            <tab spacing="true" margin="true" id="workgroups"
+                 caption="msg://de.diedavids.cuba.cedg.entity/Employee.workgroups">
+                <table id="workgroupsTable"
+                       height="200px"
+                       width="100%">
+                    <actions>
+                        <action id="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="townHall"/>
+                    </columns>
+                    <rows datasource="workgroupsDs"/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="removeBtn"
+                                action="workgroupsTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </tab>
+        </tabSheet>
+
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

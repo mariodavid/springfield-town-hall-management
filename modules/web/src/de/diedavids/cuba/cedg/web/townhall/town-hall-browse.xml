@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="de.diedavids.cuba.cedg.web.townhall.TownHallBrowse"
+        focusComponent="townHallsTable"
+        lookupComponent="townHallsTable"
+        messagesPack="de.diedavids.cuba.cedg.web.townhall">
+    <dsContext>
+        <groupDatasource id="townHallsDs"
+                         class="de.diedavids.cuba.cedg.entity.TownHall"
+                         view="townHall-view">
+            <query>
+                <![CDATA[select e from cedg$TownHall e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="townHallsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="townHallsTable"
+                datasource="townHallsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="townHallsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rows datasource="townHallsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="townHallsTable.create"/>
+                <button id="editBtn"
+                        action="townHallsTable.edit"/>
+                <button id="removeBtn"
+                        action="townHallsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

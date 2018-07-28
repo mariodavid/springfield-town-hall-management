@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="de.diedavids.cuba.cedg.entity.Employee"
+          extends="_local"
+          name="employee-edit-view">
+        <property name="systemUser"
+                  view="_minimal"/>
+        <property name="townHalls"
+                  view="_minimal"/>
+        <property name="workgroups"
+                  view="workgroup-with-townhallview"/>
+    </view>
+    <view class="de.diedavids.cuba.cedg.entity.Employee"
+          extends="_local"
+          name="employee-assign-workgroup-view">
+        <property name="systemUser"
+                  view="_minimal"/>
+        <property name="townHalls"
+                  view="_minimal"/>
+        <property name="workgroups"
+                  view="_minimal"/>
+    </view>
+    <view class="de.diedavids.cuba.cedg.entity.Workgroup"
+          extends="_local"
+          name="workgroup-view">
+        <property name="townHall"
+                  view="_minimal"/>
+        <property name="employees"
+                  view="_minimal"/>
+    </view>
+    <view class="de.diedavids.cuba.cedg.entity.Workgroup"
+          extends="_local"
+          name="workgroup-with-townhallview">
+        <property name="townHall"
+                  view="_minimal"/>
+    </view>
+    <view class="de.diedavids.cuba.cedg.entity.TownHall"
+          extends="_local"
+          name="townHall-view">
+        <property name="workgroups"
+                  view="_minimal"/>
+        <property name="employees"
+                  view="_minimal"/>
+    </view>
+</views>

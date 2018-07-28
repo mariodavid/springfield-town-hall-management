@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <screen id="cedg$TownHall.browse"
+            template="de/diedavids/cuba/cedg/web/townhall/town-hall-browse.xml"/>
+    <screen id="cedg$TownHall.edit"
+            template="de/diedavids/cuba/cedg/web/townhall/town-hall-edit.xml"/>
+    <screen id="cedg$Workgroup.browse"
+            template="de/diedavids/cuba/cedg/web/workgroup/workgroup-browse.xml"/>
+    <screen id="cedg$Workgroup.edit"
+            template="de/diedavids/cuba/cedg/web/workgroup/workgroup-edit.xml"/>
+    <screen id="cedg$Employee.browse"
+            template="de/diedavids/cuba/cedg/web/employee/employee-browse.xml"/>
+    <screen id="cedg$Employee.edit"
+            template="de/diedavids/cuba/cedg/web/employee/employee-edit.xml"/>
+    <screen id="cedg$Employee.assignWorkgroup"
+            template="de/diedavids/cuba/cedg/web/employee/example1/employee-assign-workgroup.xml"/>
+    <screen id="mainWindow"
+            template="de/diedavids/cuba/cedg/web/screens/ext-mainwindow.xml"/>
+</screen-config>

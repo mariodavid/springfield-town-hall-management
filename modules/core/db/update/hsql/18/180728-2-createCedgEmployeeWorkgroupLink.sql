@@ -1,0 +1,2 @@
+alter table CEDG_EMPLOYEE_WORKGROUP_LINK add constraint FK_EMPWOR_ON_WORKGROUP foreign key (WORKGROUP_ID) references CEDG_WORKGROUP(ID);
+alter table CEDG_EMPLOYEE_WORKGROUP_LINK add constraint FK_EMPWOR_ON_EMPLOYEE foreign key (EMPLOYEE_ID) references CEDG_EMPLOYEE(ID);

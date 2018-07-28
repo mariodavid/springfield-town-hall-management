@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-cedg"
+          insertBefore="administration">
+        <item screen="cedg$Employee.browse"/>
+    </menu>
+    <menu id="master-data"
+          insertBefore="administration">
+        <item screen="cedg$TownHall.browse"/>
+        <item screen="cedg$Workgroup.browse"/>
+    </menu>
+</menu-config>
